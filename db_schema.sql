@@ -60,10 +60,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table ris.user: ~0 rows (approximately)
+-- Dumping data for table ris.user: ~6 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`user_id`, `login`, `password`, `email`, `date_added`, `date_modified`) VALUES
+  (1, 'admin', 'pass', 'email', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+  (2, 'tibi', 'passq', 'email2', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+  (3, 'Grigore', 'SoparolaCEMo', 'email3', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+  (4, 'ATD', 'SoparolaCE', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+  (5, 'Talibanu', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+  (6, 'Talibanu2', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
