@@ -20,9 +20,10 @@ class User extends CI_Controller
 		$login = $this->input->post('login');
 		$password = $this->input->post('password');
 
+
 		$result = $this->user_model->get([
 			'login' => $login,
-			'password' => $password
+			'password' => hash('sha256', $password . access_key)
 		]);
 		
 		$this->output->set_content_type('application_json');
@@ -31,8 +32,7 @@ class User extends CI_Controller
 				$this->output->set_output(json_encode([ 'result' => 1	]));
 				return false;
 
-		}
-		
+		}		
 		$this->output->set_output(json_encode([ 'result' => 0 	]));
 
 	

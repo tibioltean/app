@@ -12,6 +12,15 @@ class Home extends CI_Controller
 		$this->load->view('home/inc/footer_view');	
 	}
 
+	
+
+	// public function code()
+	// {
+	// 	echo hash('sha256', 'pass'.access_key);
+	// }
+
+
+
 	// Acesasta parte se face un model
 	public function test_db()
 	{
