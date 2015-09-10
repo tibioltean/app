@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="span6">
-	<form id="login_form" class="form-horizontal" method="post" action="<?=site_url('user/login')?>">	
+	<form id="login_form" class="form-horizontal" method="post" action="<?=site_url('api/login')?>">	
 		<div class="control-group">
 			<label class="control-label"> Login </label>
 			<div class="controls">
@@ -33,7 +33,7 @@
 			var url = $(this).attr('action');
 			var postData = $(this).serialize();
 
-			$.post(url, postData, function(o) {
+		    $.post(url, postData, function(o) {
 				
 				if(o.result ==1){
 					window.location.href = '<?=site_url('dashboard')?>';

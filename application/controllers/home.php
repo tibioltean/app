@@ -5,6 +5,9 @@
 */
 class Home extends CI_Controller
 {	
+	
+
+ // --------------------------------------------------------------------------------------------------
 	public function index()
 	{
 		$this->load->view('home/inc/header_view');
@@ -12,7 +15,7 @@ class Home extends CI_Controller
 		$this->load->view('home/inc/footer_view');	
 	}
 
-	
+ // --------------------------------------------------------------------------------------------------	
 	public function register()
 	{
 		$this->load->view('home/inc/header_view');

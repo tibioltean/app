@@ -3,7 +3,7 @@
 
 	<div id="register_form_error" class="alert alert-error"><!--Dynamic --></div>
 
-	<form id="register_form" class="form-horizontal" method="post" action="<?=site_url('user/register')?>">	
+	<form id="register_form" class="form-horizontal" method="post" action="<?=site_url('api/register')?>">	
 		<div class="control-group">
 			<label class="control-label"> Username </label>
 			<div class="controls">

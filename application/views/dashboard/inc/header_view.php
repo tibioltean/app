@@ -7,7 +7,17 @@
 
 	<script src="<?=base_url()?>public/js/jquery.js"></script>
 	<script src="<?=base_url()?>public/js/bootstrap.js"></script>
+	<script src="<?=base_url()?>public/js/ris/dashboard/result.js"></script>
+	<script src="<?=base_url()?>public/js/ris/dashboard/event.js"></script>
+	<script src="<?=base_url()?>public/js/ris/dashboard/template.js"></script>
+	<script src="<?=base_url()?>public/js/ris/dashboard.js"></script>
+	<script>
+	$(function() {
+		// Init the Dashboard Application
+		var dashboard = new Dashboard();
 
+	});
+	</script>
 </head>
 <body>
 
