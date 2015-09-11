@@ -4,7 +4,7 @@ var Event = function() {
   
     this.__construct = function() {
         console.log('Event Created @');
-        Result = new Result();
+        //Result = new Result();
         create_todo();
         create_note();
         update_todo();
