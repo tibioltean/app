@@ -31,7 +31,7 @@ var Event = function() {
 
                 }else{
 
-                    Result.error();
+                    Result.error(o.error);
 
                 }
             }, 'json');
