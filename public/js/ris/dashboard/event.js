@@ -25,9 +25,9 @@ var Event = function() {
 
             $.post(url , postData, function(o){
                 if (o.result == 1){
-                    Result.success('test');
+                    Result.success('Adaugat cu succces');
                     var output = Template.todo(o.data[0]); // Aici vine raspunsul din DOM api create_todo variabila data
-                    $("#list_todo").append(output);  // in loc de html(output) pun prepand
+                    $("#list_todo").append(output);  // in loc de html(output) pun prepand pentru sortarea listei instant
 
                 }else{
 
@@ -62,7 +62,26 @@ var Event = function() {
     // ------------------------------------------------------------------------
     
     var delete_todo = function() {
+        $("body").on('click','todo_delete', function(e)
+    {
+        e.preventDefault();
         
+        var self =$(this).parent('div');
+        var url = $(this).attr('href');
+        var postData = {
+            'todo_id' : $(this).attr('data-id')
+        };
+
+        $.post(url, postData, function(o){
+
+                if(o.result == 1){
+                    Result.success('Item Deleted');
+                    self.remove();
+                }else {
+                    Result.error(o.msg);
+                }
+         }, 'json');
+     });
     };
 
     // ------------------------------------------------------------------------

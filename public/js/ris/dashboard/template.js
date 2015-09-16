@@ -12,7 +12,7 @@ var Template = function() {
         var output = '';
         output += '<div id="todo_'+ obj.todo_id +'">';
         output += '<span>' + obj.content + '</span>';
-        output += '<a href="#">delete</a>';
+        output += '<a data-id="' + obj.todo_id + '" class="todo_delete" href="api/delete_todo">delete</a>';
         output += '</div>';
         return output;
     };

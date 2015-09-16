@@ -183,7 +183,25 @@ class Api extends CI_Controller
 	public function delete_todo()
 	{
 		$this->_require_login();
-		$todo_id = $this->input->post('todo_id');
+		//$todo_id = $this->input->post('todo_id');
+
+	    $this->db->delete('todo', [
+				'todo_id' => $this->input->post('todo_id'),
+				'user_id' => $this->session->userdata('user_id')
+			]);
+
+	   //print_r($this->db->affected_rows());
+
+		if($this->db->affected_rows() > 0){
+			$this->output->set_output(json_encode(['result' => 1]));
+			
+		}else {
+			$this->output->set_output(json_encode([
+				'result' => 0,
+				'message' => 'Could not delete. Nu merge'
+			]));
+		}
+
 	}
  
 
