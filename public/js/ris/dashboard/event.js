@@ -24,10 +24,10 @@ var Event = function() {
             var postData = $(this).serialize();
 
             $.post(url , postData, function(o){
-
                 if (o.result == 1){
-
-                    Result.success();
+                    Result.success('test');
+                    var output = Template.todo(o.data[0]); // Aici vine raspunsul din DOM api create_todo variabila data
+                    $("#list_todo").append(output);  // in loc de html(output) pun prepand
 
                 }else{
 

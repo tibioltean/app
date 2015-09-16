@@ -10,8 +10,9 @@ var Template = function() {
     
     this.todo = function(obj) {
         var output = '';
-        output += '<div id="'+ obj.todo_id +'">';
+        output += '<div id="todo_'+ obj.todo_id +'">';
         output += '<span>' + obj.content + '</span>';
+        output += '<a href="#">delete</a>';
         output += '</div>';
         return output;
     };
@@ -20,7 +21,7 @@ var Template = function() {
     
     this.note = function(obj) {
         var output = '';
-        output += '<div id="'+ obj.note_id +'">';
+        output += '<div id="note_'+ obj.note_id +'">';
         output += '<span>' + obj.title + '</span>';
         output += '<span>' + obj.content + '</span>';
         output += '</div>';

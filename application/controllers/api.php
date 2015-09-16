@@ -102,11 +102,37 @@ class Api extends CI_Controller
  
 
  // TODO --------------------------------------------------------------------------------------------------
+
+// Get TODO --------------------------------------------------------------------------------------------------
+	public function get_todo($id = null)
+	{
+			
+		$this->_require_login();
+
+		// daca trimit id-ul al todo-ului returneaza linia id-ului ****** altfel returneaza toata lista de todo
+		if($id != null){
+			$this->db->where([
+					'todo_id' => $id,
+					'user_id' => $this->session->userdata('user_id')
+				]);	
+		} else {
+			// aici imi afiseaza toada lista de todo
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+		}
+
+		$query = $this->db->get('todo');
+		$result = $query->result_array();
+		// daca lasam result() returna un obiect asa result_array returneaza un array
+
+		//print_r($result);
+		//Pregatesct rezultatul in JSon pt preluare load in js din dashboard
+		$this->output->set_output(json_encode($result));
+
+	}
 	public function create_todo()
 	{
 		
 		$this->_require_login();
-
 
 		$this->form_validation->set_rules('content', 'Content', 'required|max_length[255]');
 		if($this->form_validation->run() == false){
@@ -126,7 +152,17 @@ class Api extends CI_Controller
 
 		if($result){
 			// daca e ok nu se intampla nimic
-			$this->output->set_output(json_encode(['result' => 1]));
+			// Pregates raspunsul pentru Afisare lista adaugand variabila data
+			//$this->output->set_output(json_encode(['result' => 1])); era initial
+
+			// GET THE Fresh entry from the DOM
+			$query = $this->db->get_where('todo', ['todo_id' => $this->db->insert_id()]);
+		
+			$this->output->set_output(json_encode([
+				'result' => 1,
+				'data' => $query->result()
+				])); 
+
 		}else{
 				$this->output->set_output(json_encode([
 					'result' => 0, 
@@ -153,6 +189,13 @@ class Api extends CI_Controller
 
  
  // NOTE --------------------------------------------------------------------------------------------------
+	public function get_note()
+	{
+			
+		$this->_require_login();
+	
+	}
+
 	public function create_note()
 	{
 	
