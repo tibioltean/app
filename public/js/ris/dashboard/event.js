@@ -61,17 +61,19 @@ var Event = function() {
     
     // ------------------------------------------------------------------------
     
+    // AM gasig problem era la .todo_delete
     var delete_todo = function() {
-        $("body").on('click','todo_delete', function(e)
-    {
+        $("body").on('click','.todo_delete', function(e){
         e.preventDefault();
-        
+        alert('Intra in functie si activeza linkul');
+
         var self =$(this).parent('div');
         var url = $(this).attr('href');
-        var postData = {
-            'todo_id' : $(this).attr('data-id')
+        var postData = { 
+            'todo_id' : $(this).attr('data-id') 
         };
 
+        //console.log('canci');
         $.post(url, postData, function(o){
 
                 if(o.result == 1){
