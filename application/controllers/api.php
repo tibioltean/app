@@ -175,7 +175,31 @@ class Api extends CI_Controller
 	public function update_todo()
 	{
 		$this->_require_login();
+
 		$todo_id = $this->input->post('todo_id');
+		$completed = $this->input->post('completed');
+
+		//debuging
+		// echo $todo_id;
+		// echo "\n";
+		// echo $completed;
+		// print_r($_POST);
+		//print_r($this->input->post('completed'));
+		//print_r($this->input->post('todo_id'));
+
+		$this->db->where(['todo_id' => $todo_id]);
+		$this->db->update('todo',[
+				'completed' => $completed
+			]);
+
+		$result = $this->db->affected_rows();
+
+		if($result){
+		$this->output->set_output(json_encode(['result' => 1]));
+		return false;	
+		}
+		$this->output->set_output(json_encode(['result' => 0]));
+		return false;
 	}
  
 
@@ -190,7 +214,7 @@ class Api extends CI_Controller
 				'user_id' => $this->session->userdata('user_id')
 			]);
 
-	   //print_r($this->db->affected_rows());
+	   //print_r($this->db->affected_rows());  
 
 		if($this->db->affected_rows() > 0){
 			$this->output->set_output(json_encode(['result' => 1]));
@@ -201,7 +225,6 @@ class Api extends CI_Controller
 				'message' => 'Could not delete. Nu merge'
 			]));
 		
-
 	}
  
 

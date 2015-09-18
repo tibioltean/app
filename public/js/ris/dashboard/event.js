@@ -50,7 +50,41 @@ var Event = function() {
     // ------------------------------------------------------------------------
     
     var update_todo = function() {
-        
+        $("body").on('click','.todo_update', function(e){
+            e.preventDefault();
+
+            var self = $(this);  // acces inauntru $. POST-ului de mai jos
+
+            // Atentie la todo_id era id simplu, iar cand ajungea in API nu il preluam corect cu post input si nu putea sa imi faca query in db
+            var url = $(this).attr('href');
+            var postData = {
+                todo_id: $(this).attr('data-id'),            
+                completed: $(this).attr('data-completed')
+            }; // 'todo_id': merge si todo_id: in ex de mai sus
+
+            //console.log(postData);
+
+            $.post(url, postData, function(o){
+
+                if(o.result == 1){
+                   // Result.success('Saved'); //Suprascriu mesajul din Result Success .js - daca nu trimit rezultat se pun automat cel din !!! NU AM NEVOIE DE MESAJ PT SUCCES 
+                    if(postData.completed == 1){
+                        self.parent('div').addClass('todo_complete'); // daca las parents - atunci adauga lasa css la toate div-urile 
+                        self.html('<i class="icon-share-alt">'); // Aici a fost uncomplete -- afiseaza pentru live cum sa arate dupa ce incarca template-ul
+                        self.attr('data-completed', 0);                        
+                    } else {
+
+                        self.parent('div').removeClass('todo_complete'); // daca e completat dau remove la clasa
+                        self.html('<i class="icon-ok"></i>'); // aici a fost Complete
+                        self.attr('data-completed', 1);  
+                    }
+
+                } else {
+                    Result.error('Nothing Updated'); // Suprascrie eroarea din Result.js
+                }
+
+            }, 'json');
+        });
     };
 
     // ------------------------------------------------------------------------
@@ -76,7 +110,7 @@ var Event = function() {
         //console.log('!!*** Verficare');
         $.post(url, postData, function(o){
 
-                if(o.result === 1){
+                if(o.result == 1){
                     Result.success('Item Deleted');
                     self.remove();
                      console.log('canci');

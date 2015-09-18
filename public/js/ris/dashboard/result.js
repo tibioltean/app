@@ -29,7 +29,7 @@ var Result = function() {
         var dom = $("#error");
 
         if(typeof msg === 'undefined'){
-            $("#error").html('Error eroare de complatare').fadeIn();
+            $("#error").html('Error ').fadeIn();
         }
 
            if (typeof msg === 'object'){
