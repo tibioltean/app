@@ -65,7 +65,7 @@ var Event = function() {
     var delete_todo = function() {
         $("body").on('click','.todo_delete', function(e){
         e.preventDefault();
-        alert('Intra in functie si activeza linkul');
+        //alert('Intra in functie si activeza linkul');
 
         var self =$(this).parent('div');
         var url = $(this).attr('href');
@@ -73,12 +73,13 @@ var Event = function() {
             'todo_id' : $(this).attr('data-id') 
         };
 
-        //console.log('canci');
+        //console.log('!!*** Verficare');
         $.post(url, postData, function(o){
 
-                if(o.result == 1){
+                if(o.result === 1){
                     Result.success('Item Deleted');
                     self.remove();
+                     console.log('canci');
                 }else {
                     Result.error(o.msg);
                 }
